@@ -32,7 +32,7 @@ Binary Search Approach: Binary Search is a searching algorithm used in a sorted 
 
 ## Acknowledgements
 
- - [Binary Search](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
+ - [Binary Search](https://github.com/divyalalwani64/leetcode/binarysearch)
  - [Awesome README](https://github.com/matiassingers/awesome-readme)
  - [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
 
