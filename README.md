@@ -60,7 +60,7 @@ Getting started with Markdown
 - [Paragraph](#paragraph)
 - [Majority Element](#majority_element)
 	- [List CheckBox](#list-checkbox)
-- [Link](#link)
+- [Majority Element2](#majority_element2)
 	- [Anchor links](#anchor-links)
 - [Blockquote](#blockquote)
 - [Image | GIF](#image--gif)
@@ -140,6 +140,35 @@ class Solution {
                 return nums[i];
         }
         return 0;
+    }
+}
+```
+
+# Majority_Element2
+
+Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times.<br/>
+
+Example 1:<br/>
+Input: nums = [3,2,3]<br/>
+Output: [3]<br/>
+
+We can solve it with the help of hashmap and arrayList for storing the output.</br>
+1.Store the element and its count in hashmap.</br>
+2.If count> n/3 && element is not there in arrayList , we will store that element in arrayList.</br>
+```bash
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        int len=nums.length;
+        List<Integer> majority= new ArrayList<>();
+        HashMap<Integer, Integer> hm=new HashMap<>();
+        for(int i=0;i<nums.length;i++)
+        {
+            hm.put(nums[i], hm.getOrDefault(nums[i],0)+1);
+            int n=hm.get(nums[i]);
+            if(n> len/3 && !majority.contains(nums[i]))
+                majority.add(nums[i]);
+        }
+        return majority;
     }
 }
 ```
