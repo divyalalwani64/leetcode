@@ -41,7 +41,7 @@ Binary Search Approach: Binary Search is a searching algorithm used in a sorted 
 
 
 
-#Majority Element
+#majority
 
 
 
