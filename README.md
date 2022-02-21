@@ -117,4 +117,29 @@ Nulla varius risus sapien, nec fringilla massa facilisis sed. Pellentesque habit
     Phasellus eleifend egestas diam, id tincidunt arcu dictum quis.
     
 # Majority_Element
+Given an array nums of size n, return the majority element.
+The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
 
+Example 1:
+Input: nums = [3,2,3]
+Output: 3
+
+We can solve it with the help of hashmap.
+1.Store the element and its count in hashmap.
+2.If count> n/2 , we will return that element.
+```bash
+class Solution {
+    public int majorityElement(int[] nums) {
+        int len=nums.length - 1;
+        HashMap<Integer, Integer> hm= new HashMap();
+        for(int i=0;i< nums.length;i++)
+        {
+            hm.put(nums[i],hm.getOrDefault(nums[i],0)+1);
+            int n = hm.get(nums[i]);
+            if(n > (len/2) )
+                return nums[i];
+        }
+        return 0;
+    }
+}
+```
