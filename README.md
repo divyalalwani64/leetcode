@@ -120,13 +120,13 @@ Nulla varius risus sapien, nec fringilla massa facilisis sed. Pellentesque habit
 Given an array nums of size n, return the majority element.</br>
 The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.</br>
 
-Example 1:
-Input: nums = [3,2,3]
-Output: 3
+Example 1:</br>
+Input: nums = [3,2,3]</br>
+Output: 3</br>
 
-We can solve it with the help of hashmap.
-1.Store the element and its count in hashmap.
-2.If count> n/2 , we will return that element.
+We can solve it with the help of hashmap.</br>
+1.Store the element and its count in hashmap.</br>
+2.If count> n/2 , we will return that element.</br>
 ```bash
 class Solution {
     public int majorityElement(int[] nums) {
