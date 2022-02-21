@@ -58,7 +58,7 @@ Getting started with Markdown
 - [Getting started with Markdown](#getting-started-with-markdown)
 - [Titles](#titles)
 - [Paragraph](#paragraph)
-- [List](#list)
+- [Majority Element](#majority_element)
 	- [List CheckBox](#list-checkbox)
 - [Link](#link)
 	- [Anchor links](#anchor-links)
@@ -115,3 +115,6 @@ Nulla varius risus sapien, nec fringilla massa facilisis sed. Pellentesque habit
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum, nibh eu commodo posuere, ligula ante dictum neque, vitae pharetra mauris mi a velit. 
     
     Phasellus eleifend egestas diam, id tincidunt arcu dictum quis.
+    
+# Majority_Element
+
