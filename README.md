@@ -219,9 +219,9 @@ Given the head of a linked list, return the list after sorting it in ascending o
 
  Merge Sort is one of the efficient sorting algorithms that is popularly used for sorting the linked list.</br>
  
- Algorithm:
- 1.Recursively divide the list on basis of start and mid (find mid with help of slow and fast pointer).
- 2.Merge the divided the list , using merge two sorted list concept.
+ Algorithm:</br>
+ 1.Recursively divide the list on basis of start and mid (find mid with help of slow and fast pointer).</br>
+ 2.Merge the divided the list , using merge two sorted list concept.</br>
 
 ```bash
 class Solution {
