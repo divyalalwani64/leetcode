@@ -62,7 +62,7 @@ Getting started with Markdown
 	- [List CheckBox](#list-checkbox)
 - [Majority Element2](#majority_element2)
 	- [Anchor links](#anchor-links)
-- [Blockquote](#blockquote)
+- [Container With Most Water](#container_with_most_water)
 - [Image | GIF](#image--gif)
 - [Style Text](#style-text)
 	- [Italic](#italic)
@@ -172,3 +172,40 @@ class Solution {
     }
 }
 ```
+
+# Container_With_Most_Water
+You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).</br>
+
+Find two lines that together with the x-axis form a container, such that the container contains the most water.</br>
+
+Return the maximum amount of water a container can store.</br>
+
+Notice that you may not slant the container.</br>
+
+![image](https://user-images.githubusercontent.com/97536928/155071305-cf13c4e7-b0a7-4ae4-87ea-7ff7b6ace638.png)
+```bash
+class Solution {
+    public int maxArea(int[] height) {
+        int i=0, j=height.length-1, max=Integer.MIN_VALUE,product;
+        while(i<j)
+        {
+            product=1;
+            if(height[i]>height[j])
+            {
+                product=height[j]*(j-i);
+                j--;
+            }
+            else
+            {
+                product=height[i]*(j-i);
+                i++;
+            }
+            max=Math.max(max,product);
+        }
+        return max;
+    }
+}
+```
+
+
+ 
