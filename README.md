@@ -183,6 +183,10 @@ Return the maximum amount of water a container can store.</br>
 Notice that you may not slant the container.</br>
 
 ![image](https://user-images.githubusercontent.com/97536928/155071305-cf13c4e7-b0a7-4ae4-87ea-7ff7b6ace638.png)
+
+1. We can solve it using Two Pointers.<br/>
+2. Take i =0 and j=len-1;<br/>
+3. If height[i] < height[j] , we will increase i++ , else j--.<br/>
 ```bash
 class Solution {
     public int maxArea(int[] height) {
