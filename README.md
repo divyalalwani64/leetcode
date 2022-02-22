@@ -64,8 +64,8 @@ Getting started with Markdown
 	- [Anchor links](#anchor-links)
 - [Container With Most Water](#container_with_most_water)
 - [Sort List](#sort_list)
-- [Image | GIF](#image--gif)
-- [Style Text](#style-text)
+- [Is Subsequence](#is_subsequence)
+- [Excel Sheet Column Number](#excel_sheet_column_number)
 	- [Italic](#italic)
 	- [Bold](#bold)
 	- [Strikethrough](#strikethrough)
@@ -284,9 +284,9 @@ Input: s = "abc", t = "ahbgdc"</br>
 Output: true</br>
 
 Algorithm:</br>
-1.Take two pointers i for s and j for t initialize with 0 .
-2.Increment i if s.charAt(i) == t.charAt(j) and increment j at every step.
-3.if i equals length of s , return true , else return false.
+1.Take two pointers i for s and j for t initialize with 0 .</br>
+2.Increment i if s.charAt(i) == t.charAt(j) and increment j at every step.</br>
+3.if i equals length of s , return true , else return false.</br>
 
 ```bash
 class Solution {
@@ -307,3 +307,40 @@ class Solution {
 }
 ```
  
+ # Excel_Sheet_Column_Number
+ 
+ Given a string columnTitle that represents the column title as appear in an Excel sheet, return its corresponding column number.<br/>
+
+For example:<br/>
+A -> 1<br/>
+B -> 2<br/>
+C -> 3<br/>
+...<br/>
+Z -> 26<br/>
+AA -> 27<br/>
+AB -> 28 <br/>
+...<br/>
+
+For every additional digit of the string, we multiply the value of the digit by 26^n where n is the number of digits it is away from the one's place. This is similar to how the number 254 could be broken down as this: (2 x 10 x 10) + (5 x 10) + (4). The reason we use 26 instead of 10 is because 26 is our base.<br/>
+
+For s = "BCM" the final solution would be (2 x 26 x 26) + (3 x 26) + (13)<br/>
+
+We could do this process iteratively. Start at looking at the first digit "B". Add the int equivalent of "B" to the running sum and continue. Every time we look at the following digit multiply our running sum by 26 before adding the next digit to signify we are changing places. Example below:<br/>
+
+"B" = 2<br/>
+"BC" = (2)26 + 3<br/>
+"BCM" = (2(26) + 3)26 + 13<br/>
+
+```bash
+class Solution {
+    public int titleToNumber(String columnTitle) {
+       if(columnTitle.length()==0)
+           return -1;
+        int sum=0;
+        for(char ch: columnTitle.toUpperCase().toCharArray())
+            sum=sum*26 + ch-'A'+1;
+        return sum;
+    }
+}
+```
+
