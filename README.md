@@ -63,6 +63,7 @@ Getting started with Markdown
 - [Majority Element2](#majority_element2)
 	- [Anchor links](#anchor-links)
 - [Container With Most Water](#container_with_most_water)
+- [Sort List](#sort_list)
 - [Image | GIF](#image--gif)
 - [Style Text](#style-text)
 	- [Italic](#italic)
@@ -184,9 +185,9 @@ Notice that you may not slant the container.</br>
 
 ![image](https://user-images.githubusercontent.com/97536928/155071305-cf13c4e7-b0a7-4ae4-87ea-7ff7b6ace638.png)
 
-1. We can solve it using Two Pointers.<br/>
-2. Take i =0 and j=len-1;<br/>
-3. If height[i] < height[j] , we will increase i++ , else j--.<br/>
+1. We can solve it using Two Pointers.</br>
+2. Take i =0 and j=len-1;</br>
+3. If height[i] < height[j] , we will increase i++ , else j--.</br>
 ```bash
 class Solution {
     public int maxArea(int[] height) {
@@ -210,6 +211,67 @@ class Solution {
     }
 }
 ```
+
+# Sort_List
+
+Given the head of a linked list, return the list after sorting it in ascending order.</br>
+![image](https://user-images.githubusercontent.com/97536928/155078054-8dfbb539-f56a-4347-ae70-1b9f17cab005.png)
+
+ Merge Sort is one of the efficient sorting algorithms that is popularly used for sorting the linked list.</br>
+ 
+ Algorithm:
+ 1.Recursively divide the list on basis of start and mid (find mid with help of slow and fast pointer).
+ 2.Merge the divided the list , using merge two sorted list concept.
+
+```bash
+class Solution {
+    public ListNode sortList(ListNode head) {
+        if(head==null || head.next==null)
+            return head;
+        ListNode mid=getMid(head);
+        ListNode left=sortList(head);
+        ListNode right= sortList(mid);
+        return merge(left, right);
+    }
+    public ListNode merge(ListNode list1, ListNode list2)
+    {
+        ListNode temp=new ListNode(0);
+        ListNode dummyhead= temp;
+        while(list1!=null && list2!=null)
+        {
+            if(list1.val< list2.val)
+            {
+                temp.next = list1;
+                list1=list1.next;
+            }
+            else
+            {
+                 temp.next = list2;
+                 list2=list2.next;
+            }
+            temp=temp.next;
+        }
+        if(list1!=null)
+            temp.next=list1;
+        if(list2!=null)
+            temp.next=list2;
+        return dummyhead.next;
+    }
+    public ListNode getMid(ListNode head)
+    {
+        ListNode mid=head, fast=head, prev=null;
+        while(fast!=null && fast.next!=null)
+        {
+            prev=mid; // we will also keep track of previous of mid, so that we can break the link from start to midprev and mid to end
+            mid=mid.next;
+            fast=fast.next.next;
+        }   
+        prev.next=null;// here we are assigning prev of next to null, break the link.
+        return mid;
+    }
+}
+```
+
 
 
  
