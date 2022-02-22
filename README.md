@@ -272,6 +272,38 @@ class Solution {
 }
 ```
 
+# Is_Subsequence
 
+Given two strings s and t, return true if s is a subsequence of t, or false otherwise.</br>
 
+A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., "ace" is a subsequence of "abcde" while "aec" is not).</br>
+
+ Example 1:</br>
+
+Input: s = "abc", t = "ahbgdc"</br>
+Output: true</br>
+
+Algorithm:</br>
+1.Take two pointers i for s and j for t initialize with 0 .
+2.Increment i if s.charAt(i) == t.charAt(j) and increment j at every step.
+3.if i equals length of s , return true , else return false.
+
+```bash
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        int len1=t.length() , len2=s.length();
+        int i=0,j=0;
+        while(j<len1 && i<len2)
+        {
+            if(s.charAt(i) == t.charAt(j))
+                i++;
+            j++;
+        }
+        if(i==len2)
+            return true;
+        else
+            return false;
+    }
+}
+```
  
