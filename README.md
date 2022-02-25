@@ -349,10 +349,10 @@ Input: nums = [1,1,0,1,1,1]</br>
 Output: 3</br>
 Explanation: The first two digits or the last three digits are consecutive 1s. The maximum number of consecutive 1s is 3.</br>
 
-Algorithm:
-1.we will iterate through all the elements.
-2. if element is 1, will increase the counter.
-3. else, will compare that counter has the max value, and reintialize counter to 0.
+Algorithm:</br>
+1.we will iterate through all the elements.</br>
+2. if element is 1, will increase the counter.</br>
+3. else, will compare that counter has the max value, and reintialize counter to 0.</br>
 ```bash
 class Solution {
     public int findMaxConsecutiveOnes(int[] nums) {
