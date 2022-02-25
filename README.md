@@ -66,10 +66,7 @@ Getting started with Markdown
 - [Sort List](#sort_list)
 - [Is Subsequence](#is_subsequence)
 - [Excel Sheet Column Number](#excel_sheet_column_number)
-	- [Italic](#italic)
-	- [Bold](#bold)
-	- [Strikethrough](#strikethrough)
-- [Code](#code)
+- [Maximum Consecutive Ones](#max_consecutive_ones)
 - [Email](#email)
 - [Table](#table)
 	- [Table Align](#table-align)
@@ -340,6 +337,43 @@ class Solution {
         for(char ch: columnTitle.toUpperCase().toCharArray())
             sum=sum*26 + ch-'A'+1;
         return sum;
+    }
+}
+```
+
+# Max_Consecutive_Ones
+Given a binary array nums, return the maximum number of consecutive 1's in the array.</br>
+
+Example 1:</br>
+Input: nums = [1,1,0,1,1,1]</br>
+Output: 3</br>
+Explanation: The first two digits or the last three digits are consecutive 1s. The maximum number of consecutive 1s is 3.</br>
+
+Algorithm:
+1.we will iterate through all the elements.
+2. if element is 1, will increase the counter.
+3. else, will compare that counter has the max value, and reintialize counter to 0.
+```bash
+class Solution {
+    public int findMaxConsecutiveOnes(int[] nums) {
+        int sum=0, max=0;
+        for(int i=0;i<nums.length;i++)
+        {
+            if(nums[i]==1 )
+            {
+                sum=sum+1;
+            }
+            else if(nums[i]==0)
+            {
+                if(sum>=max)
+                    max= sum;
+                sum=0;
+            }
+        }
+        if(sum>=max)// it is because possibly last number couldn't be zero.
+            max=sum;
+        return max;
+        
     }
 }
 ```
