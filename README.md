@@ -29,28 +29,6 @@ Binary Search Approach: Binary Search is a searching algorithm used in a sorted 
         }
 ```
 
-
-## Acknowledgements
-
- - [Binary Search](https://github.com/divyalalwani64/leetcode/binarysearch)
- - [Awesome README](https://github.com/matiassingers/awesome-readme)
- - [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
- - [Majority Element](https://github.com/divyalalwani64/leetcode#majority)
-
-
-
-
-
-#majority
-
-
-
-## Roadmap
-
-- Additional browser support
-
-- Add more integrations
-
 Getting started with Markdown
 =============================
 
@@ -67,52 +45,10 @@ Getting started with Markdown
 - [Is Subsequence](#is_subsequence)
 - [Excel Sheet Column Number](#excel_sheet_column_number)
 - [Maximum Consecutive Ones](#max_consecutive_ones)
-- [Email](#email)
-- [Table](#table)
-	- [Table Align](#table-align)
-    	- [Align Center](#align-center)
-    	- [Align Left](#align-left)
-    	- [Align Right](#align-right)
-- [Escape Characters](#escape-characters)
-- [Emoji](#emoji)
-- [Shields Badges](#Shields-Badges)
-- [Markdown Editor](#markdown-editor)
-- [Some links for more in depth learning](#some-links-for-more-in-depth-learning)
+- [Subsets](#subsets)
+
 
 ----------------------------------
-
-# Titles 
-
-### Title 1
-### Title 2
-
-	Title 1
-	========================
-	Title 2 
-	------------------------
-
-# Title 1
-## Title 2
-### Title 3
-#### Title 4
-##### Title 5
-###### Title 6
-
-    # Title 1
-    ## Title 2
-    ### Title 3    
-    #### Title 4
-    ##### Title 5
-    ###### Title 6    
-
-# Paragraph
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum, nibh eu commodo posuere, ligula ante dictum neque, vitae pharetra mauris mi a velit. Phasellus eleifend egestas diam, id tincidunt arcu dictum quis. Pellentesque eu dui tempus, tempus massa sed, eleifend tortor. Donec in sem in erat iaculis tincidunt. Fusce condimentum hendrerit turpis nec vehicula. Aliquam finibus nisi vel eros lobortis dictum. Etiam congue tortor libero, quis faucibus ligula gravida a. Suspendisse non pulvinar nisl. Sed malesuada, felis vitae consequat gravida, dui ligula suscipit ligula, nec elementum nulla sem vel dolor. Vivamus augue elit, venenatis non lorem in, volutpat placerat turpis. Nullam et libero at eros vulputate auctor. Duis sed pharetra lacus. Sed egestas ligula vitae libero aliquet, ac imperdiet est ullamcorper. Sed dapibus sem tempus eros dignissim, ac suscipit lectus dapibus. Proin sagittis diam vel urna volutpat, vel ullamcorper urna lobortis. Suspendisse potenti.
-
-Nulla varius risus sapien, nec fringilla massa facilisis sed. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc vel ornare erat, eget rhoncus lectus. Suspendisse interdum scelerisque molestie. Aliquam convallis consectetur lorem ut consectetur. Nullam massa libero, cursus et porta ac, consequat eget nibh. Sed faucibus nisl augue, non viverra justo sagittis venenatis.
-
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum, nibh eu commodo posuere, ligula ante dictum neque, vitae pharetra mauris mi a velit. 
-    
-    Phasellus eleifend egestas diam, id tincidunt arcu dictum quis.
     
 # Majority_Element
 Given an array nums of size n, return the majority element.</br>
@@ -378,3 +314,31 @@ class Solution {
 }
 ```
 
+# Subsets
+Subsets are the power sets, for n elements, no. of subsets will be 2^n </br>
+1.Iterative Approach</br>
+eg: [1,2,3]</br>
+result set- []</br>
+copy all sets from result set, and add 2nd element in it [1] and paste back in Result = [],[1]</br>
+copy all sets from result set, and add 2nd element in it [2],[1,2] and paste back in Result =[],[1],[2],[1,2]</br>
+copy all sets from result set, and add 2nd element in it [3], [1,3],[2,3], [1,2,3] and paste back in Result =[],[1],[2],[1,2],[3], [1,3],[2,3], [1,2,3]</br>
+
+```
+class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> res=new ArrayList();
+        res.add(new ArrayList());//adding empty list
+        for(int i=0;i<nums.length;i++)
+        {
+            int s=res.size();
+            for(int j=0;j<s;j++)
+            {
+                List<Integer> temp=new ArrayList(res.get(j));//retrieving elems from res
+                temp.add(nums[i]);//adding nums[i] to retrieved elems
+                res.add(temp);//adding updated element back to res.
+            }          
+        }
+        return res;
+    }
+}
+```
