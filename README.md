@@ -342,3 +342,24 @@ class Solution {
     }
 }
 ```
+
+2. Recursion
+```
+class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> res= new ArrayList();
+        generateSubsets(0,nums,res, new ArrayList());//passing only start as it will move for all elements till end depending on start.
+        return res;
+    }
+    public void generateSubsets(int start,int[] nums, List<List<Integer>> res, List<Integer> curr)
+    {
+        res.add(new ArrayList(curr));
+        for(int i=start;i<nums.length;i++)
+        {
+            curr.add(nums[i]);
+            generateSubsets(i+1,nums,res,curr);// this will execute first till like dfs
+            curr.remove(curr.size()-1);//backtrack and remove the last element
+        }
+    }
+}
+```
