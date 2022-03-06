@@ -32,20 +32,15 @@ Binary Search Approach: Binary Search is a searching algorithm used in a sorted 
 Getting started with Markdown
 =============================
 
-
-- [Getting started with Markdown](#getting-started-with-markdown)
-- [Titles](#titles)
-- [Paragraph](#paragraph)
 - [Majority Element](#majority_element)
-	- [List CheckBox](#list-checkbox)
 - [Majority Element2](#majority_element2)
-	- [Anchor links](#anchor-links)
 - [Container With Most Water](#container_with_most_water)
 - [Sort List](#sort_list)
 - [Is Subsequence](#is_subsequence)
 - [Excel Sheet Column Number](#excel_sheet_column_number)
 - [Maximum Consecutive Ones](#max_consecutive_ones)
 - [Subsets](#subsets)
+- [Diameter of Binary Tree](#diameter_of_binary_tree)
 
 
 ----------------------------------
@@ -360,6 +355,41 @@ class Solution {
             generateSubsets(i+1,nums,res,curr);// this will execute first till like dfs
             curr.remove(curr.size()-1);//backtrack and remove the last element
         }
+    }
+}
+```
+
+# Diameter_Of_Binary_Tree
+
+Given the root of a binary tree, return the length of the diameter of the tree.</br>
+The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.</br>
+The length of a path between two nodes is represented by the number of edges between them.</br>
+![image](https://user-images.githubusercontent.com/97536928/156914115-a4b9965f-1845-4eb2-9644-ba00701b15cd.png)
+
+Algorithm:
+1.Diameter can be the height of left subtree + right subtree.</br>
+2. It can be in left subtree, i.e left diameter</br>
+3. Or it can be in right subtree i.e right diameter</br>
+4. Therefore it will be max(left+right, leftdia, rightdia)</br>
+
+```
+class Solution {
+    public int diameterOfBinaryTree(TreeNode root) {
+        if(root==null)
+            return 0;
+        int lheight= height(root.left);
+        int rheight= height(root.right);
+        int ldia=diameterOfBinaryTree(root.left);
+        int rdia=diameterOfBinaryTree(root.right);
+        return Math.max(lheight+rheight,Math.max(ldia,rdia));
+        
+        
+    }
+    public int height(TreeNode root)
+    {
+        if(root==null)
+            return 0;
+        return Math.max(height(root.left), height(root.right))+1;
     }
 }
 ```
