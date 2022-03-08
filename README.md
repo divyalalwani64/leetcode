@@ -41,6 +41,8 @@ Getting started with Markdown
 - [Maximum Consecutive Ones](#max_consecutive_ones)
 - [Subsets](#subsets)
 - [Diameter of Binary Tree](#diameter_of_binary_tree)
+- [Inorder traversal of tree](#inorder_traversal_of_tree)
+- [Preorder traversal of tree](#preorder_traversal_of_tree)
 
 
 ----------------------------------
@@ -390,6 +392,86 @@ class Solution {
         if(root==null)
             return 0;
         return Math.max(height(root.left), height(root.right))+1;
+    }
+}
+```
+
+
+# Inorder_Traversal_Of_Tree
+
+Algorithm:</br>
+1.Create a stack.</br>
+2.Initialize currentNode = root</br>
+3.while true</br>
+  while(currentNode !=null)</br>
+    push currentNode in stack.</br>
+    currentNode= currentNode.stack.</br>
+  if stack is empty</br>
+    break</br>
+  currentNode= stack.pop()</br>
+  Add currentNode.value in result</br>
+  currentNode=currentNode.right</br>
+
+```
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        //Iterative approach
+        List<Integer> result=new ArrayList();
+        Stack<TreeNode> inorder= new Stack<>();
+        TreeNode current=root;
+        while(true)//because we have terminating condition inside the loop.
+        {
+            while(current!=null)
+            {
+                inorder.push(current);
+                current=current.left;
+            }
+            if(inorder.isEmpty())//terminating condition
+                break;
+            current=inorder.pop();
+            result.add(current.val);
+            current=current.right;
+        }
+        
+        return result;
+    }
+}
+```
+  
+ 
+# Preorder_Traversal_Of_Tree 
+Algorithm:</br>
+1.Create a stack.</br>
+2.Initialize currentNode = root</br>
+3.while true</br>
+  while(currentNode !=null)</br>
+    Add currentNode.value in result</br>
+    push currentNode in stack.</br>
+    currentNode= currentNode.stack.</br>
+  if stack is empty</br>
+    break</br>
+  currentNode= stack.pop()</br>
+  currentNode=currentNode.right</br>
+  
+  ```
+  class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        Stack<TreeNode> preorder= new Stack();
+        List<Integer> result= new ArrayList();
+        TreeNode current=root;
+        while(true)
+        {
+            while(current!=null)
+            {
+                result.add(current.val); // preorder 
+                preorder.push(current);
+                current=current.left;
+            }
+            if(preorder.isEmpty()) break;
+            current=preorder.pop();
+            current=current.right;
+        }
+        return result;
     }
 }
 ```
