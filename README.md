@@ -43,6 +43,7 @@ Getting started with Markdown
 - [Diameter of Binary Tree](#diameter_of_binary_tree)
 - [Inorder traversal of tree](#inorder_traversal_of_tree)
 - [Preorder traversal of tree](#preorder_traversal_of_tree)
+- [Copy_List_With_Random_Pointer](#copy_list_with_random_pointer)
 
 
 ----------------------------------
@@ -472,6 +473,87 @@ Algorithm:</br>
             current=current.right;
         }
         return result;
+    }
+}
+```
+
+# Copy_List_With_Random_Pointer
+1.Brute Force Approach</br>
+Algo: </br>
+1.will take a hashmap<Node,Node> which stores node and create a new node with its value.</br>
+2.Then will link the nodes.</br>
+
+```
+
+//Brute force approach
+//1.TimeComplexity = O(n)+O(n) = O(n)
+//2.SpaceComplexity = O(n) -> for hashmap
+class Solution {
+    public Node copyRandomList(Node head) {
+        HashMap<Node,Node> map =new HashMap<>();
+        Node randomNode= head;
+        //storing node and creating new node in hashmap.
+        while(randomNode!=null)
+        {
+            map.put(randomNode, new Node(randomNode.val));
+            randomNode=randomNode.next;
+        }
+        randomNode=head;
+        //Linking nodes
+        while(randomNode!=null)
+        {
+            map.get(randomNode).next=map.get(randomNode.next);
+            map.get(randomNode).random=map.get(randomNode.random);
+            randomNode=randomNode.next;
+        }
+        return map.get(head);
+        
+    }
+}
+```
+
+2.Optimized Approach</br>
+//1.Create a deep copy of node and paste copy of each node after it.</br>
+//2.link the deep copies to random.</br>
+//3.Extract back normal list and deep copy list.</br>
+
+```
+//1.TimeComplexity = O(n)+O(n)+O(n) = O(n)
+//2.SpaceComplexity = O(1) 
+class Solution {
+    public Node copyRandomList(Node head) {
+        Node iter=head;
+        Node front=head;
+        while(iter!=null && front!=null)
+        {
+            front=iter.next;
+            Node copy= new Node(iter.val);
+            iter.next=copy;
+            copy.next=front;
+            iter=front;
+        }
+        iter=head;
+        while(iter!=null)
+        {
+            if(iter.random!=null)
+               iter.next.random=iter.random.next;
+           
+              iter=iter.next.next;
+        }
+        iter=head;
+        front=head;
+        Node randomNode = new Node(0);
+        Node randomHead=randomNode;
+        while(iter!=null)
+        {
+            front=iter.next.next;
+            randomNode.next=iter.next;
+            iter.next=front;
+            iter=front;
+            randomNode=randomNode.next;
+        }
+        return randomHead.next;
+        
     }
 }
 ```
