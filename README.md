@@ -44,6 +44,7 @@ Getting started with Markdown
 - [Inorder traversal of tree](#inorder_traversal_of_tree)
 - [Preorder traversal of tree](#preorder_traversal_of_tree)
 - [Copy_List_With_Random_Pointer](#copy_list_with_random_pointer)
+- [Best Time To Buy and Sell Stocks-2](#best_time_to_buy_and_sell_stocks)
 
 
 ----------------------------------
@@ -557,3 +558,33 @@ class Solution {
     }
 }
 ```
+
+# Best_Time_To_Buy_And_Sell_Stocks-2
+Algo:</br>
+1.Set buying , selling date as 0, also profit as 0.</br>
+2.If there is increase in price from its previous date will increase the selling date.</br>
+3.If there is decrease in price, we will collect the profit and make new buy and sell date.</br>
+Simple idea is to collect all the profit at each upstroke</br>
+![image](https://user-images.githubusercontent.com/97536928/158050126-f148155c-ae20-4e69-8f7b-dddb30cbe02c.png)
+```
+class Solution {
+    public int maxProfit(int[] prices) {
+        int bd=0,sd=0,profit=0;//buying date is 0, selling date is 0 and also profit is 0;
+        for(int i=1;i<prices.length;i++)
+        {
+            if(prices[i]>=prices[i-1])//if price is greater than previous price will increase the selling date
+                sd++;
+            else // if price is less, will calculate the profit at last collected sd and bd.
+            {
+                profit+=prices[sd]-prices[bd];//collect the profit
+                bd=sd=i;// set new sd and bd
+            }
+        }
+        profit+=prices[sd]-prices[bd];//collect the profit
+        return profit;
+        
+    }
+}
+```
+
+
