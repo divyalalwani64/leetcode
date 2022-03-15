@@ -609,6 +609,12 @@ Will find the max element</br>
 2.Recurrence Relation:will apply it on maximum element.</br>
 case 1: will consider max element, find value i.e the points we can get from max element and call function maxelement-2 as we cannot consider maxelement-1.</br>
 case 2: will not consider max element , so will function with maxelement -1.</br>
+3.Base Condition</br>
+1.if maxNumber=0,will return 0, coz, any number multiply by 0 will be 0.</br>
+2.if maxNumber=1, will return the number of time 1 is occured or else will return 0.</br>
+![image](https://user-images.githubusercontent.com/97536928/158397060-94e0136b-6295-4b52-b933-2ec60bb138e4.png)
+
+
 
 <b>Top-Down Approach</b>
 We will make use of hashmap cache to store recursion data.</br>
