@@ -606,9 +606,68 @@ You earn a total of 6 points.</br>
 Algorithm:
 1.we can simplify nums by collecting all duplicate numbers together. As an example, nums can be represented as a hash map with numbers as keys which map to the number of times the key occurs in nums. [2, 2, 3, 3, 3, 4] would be converted to {2: 2, 3: 3, 4: 1}.</br>
 Will find the max element</br>
-2.Recurrence Relation:will apply it on maximum element.
-case 1: will consider max element, find value i.e the points we can get from max element and call function maxelement-2 as we cannot consider maxelement-1.
-case 2: will not consider max element , so will function with maxelement -1.
+2.Recurrence Relation:will apply it on maximum element.</br>
+case 1: will consider max element, find value i.e the points we can get from max element and call function maxelement-2 as we cannot consider maxelement-1.</br>
+case 2: will not consider max element , so will function with maxelement -1.</br>
+
+<b>Top-Down Approach</b>
+We will make use of hashmap cache to store recursion data.</br>
+1.first will check if has data , will return that.</br>
+```
+class Solution {
+    HashMap<Integer,Integer> points= new HashMap();
+    HashMap<Integer,Integer> cache= new HashMap();
+    int maxNumber=Integer.MIN_VALUE;
+    public int deleteAndEarn(int[] nums) {
+        for(int n:nums)
+        {
+            points.put(n,points.getOrDefault(n,0)+n);
+            maxNumber=Math.max(maxNumber,n);
+        }
+        return maxPoints(maxNumber);
+    }
+    public int maxPoints(int num)
+    {
+        if(num==0)
+            return 0;
+        if(num==1)
+            return points.getOrDefault(1,0);
+        if(cache.containsKey(num))
+            return cache.get(num);
+        else
+        {
+            int gain=points.getOrDefault(num,0);
+            cache.put(num,Math.max(maxPoints(num-1),maxPoints(num-2)+gain));
+        }
+        return cache.get(num);
+    }
+}
+```
+
+<b>Bottom-Up Approach</b>
+```
+class Solution {
+    HashMap<Integer,Integer> points= new HashMap();
+    int maxNumber=Integer.MIN_VALUE;
+    public int deleteAndEarn(int[] nums) {
+        for(int n:nums)
+        {
+            points.put(n,points.getOrDefault(n,0)+n);
+            maxNumber=Math.max(maxNumber,n);
+        }
+        
+    int cache[]=new int[maxNumber+1];
+        cache[0]=0;
+        cache[1]= points.getOrDefault(1,0);
+        for(int i=2;i<=maxNumber;i++)
+        {
+            int gain=points.getOrDefault(i,0);
+            cache[i]=Math.max(cache[i-1],cache[i-2]+gain);
+        }
+        return cache[maxNumber];
+}
+}
+```
 
 
 
