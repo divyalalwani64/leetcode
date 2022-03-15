@@ -44,7 +44,8 @@ Getting started with Markdown
 - [Inorder traversal of tree](#inorder_traversal_of_tree)
 - [Preorder traversal of tree](#preorder_traversal_of_tree)
 - [Copy_List_With_Random_Pointer](#copy_list_with_random_pointer)
-- [Best Time To Buy and Sell Stocks-2](#best_time_to_buy_and_sell_stocks)
+- [Best time to buy and sell stocks-2](#best_time_to_buy_and_sell_stocks)
+- [Delete and Earn](#delete_and_earn)
 
 
 ----------------------------------
@@ -586,5 +587,28 @@ class Solution {
     }
 }
 ```
+
+# Delete_And_Earn
+You are given an integer array nums. You want to maximize the number of points you get by performing the following operation any number of times:</br>
+
+Pick any nums[i] and delete it to earn nums[i] points. Afterwards, you must delete every element equal to nums[i] - 1 and every element equal to nums[i] + 1.</br>
+Return the maximum number of points you can earn by applying the above operation some number of times.</br>
+
+Example 1:</br>
+
+Input: nums = [3,4,2]</br>
+Output: 6</br>
+Explanation: You can perform the following operations:</br>
+- Delete 4 to earn 4 points. Consequently, 3 is also deleted. nums = [2].</br>
+- Delete 2 to earn 2 points. nums = [].</br>
+You earn a total of 6 points.</br>
+
+Algorithm:
+1.we can simplify nums by collecting all duplicate numbers together. As an example, nums can be represented as a hash map with numbers as keys which map to the number of times the key occurs in nums. [2, 2, 3, 3, 3, 4] would be converted to {2: 2, 3: 3, 4: 1}.</br>
+Will find the max element</br>
+2.Recurrence Relation:will apply it on maximum element.
+case 1: will consider max element, find value i.e the points we can get from max element and call function maxelement-2 as we cannot consider maxelement-1.
+case 2: will not consider max element , so will function with maxelement -1.
+
 
 
