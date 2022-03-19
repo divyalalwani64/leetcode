@@ -46,6 +46,7 @@ Getting started with Markdown
 - [Copy_List_With_Random_Pointer](#copy_list_with_random_pointer)
 - [Best time to buy and sell stocks-2](#best_time_to_buy_and_sell_stocks)
 - [Delete and Earn](#delete_and_earn)
+- [Best time to buy and sell stocks with cooldown](#best_time_to_buy_and_sell_stocks_with_cooldown)
 
 
 ----------------------------------
@@ -676,4 +677,40 @@ class Solution {
 ```
 
 
-
+# Best Time To Buy And Sell Stocks With Cooldown.
+You can solve this by using memoization.</br>
+1.Take a method pass three argument array , current element and size.</br>
+2.You have to option to buy and to not buy.</br>
+   a.If you buy you again have 2 options to sell and not to sell.</br>
+   b.iterate it through i=curr+1 to n.</br>
+   c. you will sell only if arr[i]>arr[curr]</br>
+       maxVal=Math.max(maxValue,profit[i]-profit[curr]+recallfunc(arr,i+2,n));</br>
+       
+   d.when you don't buy</br>
+      maxVal=Math.max(maxValue,+recallfunc(arr,curr+1,n));</br>
+3.Intialize dp[curr]=maxValue.</br>
+```
+class Solution {
+    public int dp[];
+    public int maxProfit(int[] prices) {
+        int n=prices.length;
+        dp=new int[n];
+        Arrays.fill(dp,-1);
+        return profit(prices,0,n);
+    }
+    public int profit(int[] prices, int curr, int n)
+    {
+        if(curr>=n)
+            return 0;
+        if(dp[curr]!=-1)
+            return dp[curr];
+        int maxVal=0;
+        for(int i=curr+1;i<n;i++)
+            if(prices[curr]<prices[i])
+                maxVal=Math.max(maxVal,prices[i]-prices[curr]+ profit(prices,i+2,n));
+        maxVal=Math.max(maxVal,profit(prices,curr+1,n));
+        dp[curr]=maxVal;
+        return maxVal;
+    }
+}
+```
